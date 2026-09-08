@@ -11,7 +11,9 @@ resource "aws_iam_role" "github" {
       Condition = {
         StringEquals = {
           "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com",
-          "token.actions.githubusercontent.com:sub": "repo:thalesvpsilva/workshop-dvn:ref:refs/heads/main"
+        }
+        StringLike = {
+          "token.actions.githubusercontent.com:sub" = "repo:thalesvpsilva@134652410/workshop-dvn@1360731103:*"
         }
       }
     }]
@@ -42,7 +44,7 @@ resource "aws_iam_policy" "github" {
           "ecr:GetDownloadUrlForLayer",
           "ecr:InitiateLayerUpload",
           "ecr:PutImage",
-          "ecr:UploadLayerPart"
+          "ecr:UploadLayerPart",
         ]
         Effect   = "Allow"
         Resource = aws_ecr_repository.this[*].arn
