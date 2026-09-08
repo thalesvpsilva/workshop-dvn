@@ -11,8 +11,8 @@ env:
     IMAGE_TAG: ${{ github.sha }}
 
 permissions:
-    contents: read
     id-token: write
+    contents: read
 
 jobs:
     backend:
@@ -20,10 +20,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v7
+              uses: actions/checkout@v4
 
             - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v6.2.4
+              uses: aws-actions/configure-aws-credentials@v5.1.1
               with:
                   aws-region: us-east-1
                   role-to-assume: arn:aws:iam::874026451845:role/workshop-dvn-github-role
@@ -42,7 +42,7 @@ jobs:
                   docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
             - name: Checkout GitOps
-              uses: actions/checkout@v7
+              uses: actions/checkout@v6
               with:
                 repository: 'thalesvpsilva/workshop-dvn-gitops'
                 token: ${{ secrets.PAT }}
