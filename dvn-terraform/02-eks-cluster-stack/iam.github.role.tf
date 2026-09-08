@@ -38,11 +38,13 @@ resource "aws_iam_policy" "github" {
       },
       {
         Action = [
-            "ecr-public:BatchCheckLayerAvailability",
-            "ecr-public:CompleteLayerUpload",
-            "ecr-public:InitiateLayerUpload",
-            "ecr-public:PutImage",
-            "ecr-public:UploadLayerPart",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:CompleteLayerUpload",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:InitiateLayerUpload",
+          "ecr:PutImage",
+          "ecr:UploadLayerPart"
         ]
         Effect   = "Allow"
         Resource = aws_ecr_repository.this[*].arn
