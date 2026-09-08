@@ -6,8 +6,8 @@ on:
         - main
 
 env:
-    BACKEND_ECR_REPOSITORY: workshop-dvn-backend/production/backend
-    FRONTEND_ECR_REPOSITORY: workshop-dvn-frontend/production/frontend
+    BACKEND_ECR_REPOSITORY: workshop-dvn/production/backend
+    FRONTEND_ECR_REPOSITORY: workshop-dvn/production/frontend
     IMAGE_TAG: ${{ github.sha }}
 
 permissions:
