@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
     push:
         branches:
-            - main
+        - main
 
 env:
     BACKEND_ECR_REPOSITORY: workshop-dvn-backend/production/backend
@@ -27,6 +27,9 @@ jobs:
               with:
                   aws-region: us-east-1
                   role-to-assume: arn:aws:iam::874026451845:role/workshop-dvn-github-role
+
+            - name: Verify AWS
+              run: aws sts get-caller-identity
 
             - name: Login to Amazon ECR
               id: login-ecr
